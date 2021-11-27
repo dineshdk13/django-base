@@ -82,7 +82,15 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = 'one.CustomUser'
+
 WSGI_APPLICATION = 'mybase.wsgi.application'
+
+
+USER_ROLES = [
+    "Superadmin", # don't change Superadmin
+    "User"
+    ]
 
 
 # Database
