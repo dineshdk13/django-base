@@ -2,15 +2,25 @@ from django.shortcuts import HttpResponse
 import json, codecs
 
 
-def Response(data,http_code, error=True, json_format=True):
-    if error:
-        status = 'OK'
+def successResponse(message,data=None,http_code=200,json_format=True):
 
-    else:
-        status = 'ERROR'
     response = {
+        "status": "OK",
+        "message":message,
         "data": data,
-        "status": status,
+        "http_code":http_code
+    }
+    if json_format:
+        response = json.dumps(response)
+
+    return HttpResponse(response, content_type='Application/json', status=int(http_code))
+
+def errorResponse(message,http_code=401,json_format=True):
+
+    response = {
+        "status": "ERROR",
+        "message":message,
+        "data": None,
         "http_code":http_code
     }
     if json_format:

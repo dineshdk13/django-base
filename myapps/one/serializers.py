@@ -1,6 +1,7 @@
 from django.http import response
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from helpers import Json
+from helpers.common import get_user_role
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -19,11 +20,6 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data['access'] = str(refresh.access_token)
 
         # Add extra responses here
-        data['is_superuser'] = self.user.is_superuser
-        response={}
-        response['status'] = 'OK'
-        response['message'] = 'Login successfully'
-        response['data'] = data
-        
+        data['role'] = get_user_role(self.user)
 
-        return response
+        return data
