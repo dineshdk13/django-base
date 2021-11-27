@@ -49,3 +49,8 @@ Thumbs.db
 # Environments
 .env
 .env/
+
+**/migrations
+*.DS_Store
+**/__pycache__
+**/.DS_Store
