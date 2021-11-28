@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import Group
 from mybase.settings import USER_ROLES
-from helpers.common import user_group
+from helpers.common import group_user
 
 # Create your models here.
 
@@ -24,7 +24,7 @@ class CustomUserManager(BaseUserManager):
         user.set_password(password)
         user.save()
         if user.is_superuser:
-            user_group(user,'Superadmin')
+            group_user(user,'Superadmin')
         return user
 
 
