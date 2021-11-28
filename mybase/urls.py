@@ -20,7 +20,7 @@ from mybase import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('one/', include('one.urls')),
+    path('api/', include('one.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

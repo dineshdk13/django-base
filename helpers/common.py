@@ -14,7 +14,8 @@ def user_group(user,user_role):
         user.groups.add(AdminRole) # Add User to admin group
         return True
     except Exception as e:
-        print (e,"test")
+        print (e)
+        return False
 
 def get_user_role(user):
     group_name =  user.groups.values_list('name', flat=True).first()

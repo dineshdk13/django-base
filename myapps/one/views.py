@@ -19,7 +19,7 @@ from helpers.common import get_user_role
 def index(request):
     template = loader.get_template('index.html')
     context = {
-        'message': "Hi,dinesh Welcom",
+        'message': "Hi,dinesh Welcome",
     }
     return HttpResponse(template.render(context, request))
 
@@ -31,7 +31,7 @@ class AsSuperAsminPermission(BasePermission):
         Return `True` if permission is granted, `False` otherwise.
         """
         print(get_user_role(request.user),"test")
-        return get_user_role(request.user) == 'User'
+        return get_user_role(request.user) == 'Superadmin'
 
     # def has_object_permission(self, request, view, obj):
     #     """

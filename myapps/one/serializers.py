@@ -29,6 +29,16 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         return data
 
 class CustomUserSerializer(serializers.ModelSerializer):
-    class Meta:
+    role=serializers.SerializerMethodField("fetch_role") #serializer function call to fetch data from another or same model
+    # email=serializers.ModelSerializer("get_email") #used for the instance of the model
+    def to_representation(self, instance):
+        primitive_repr = super(CustomUserSerializer, self).to_representation(instance)
+        primitive_repr['custom_field'] = "ORM operations or function call can be done here" #CustomUserSerializer.fetch_role(self,instance)
+        return primitive_repr
+
+    def fetch_role(self,data):
+        return get_user_role(data)
+
+    class Meta: 
         model = CustomUser
-        fields =('id','email',)
+        fields =('id','email','role')
